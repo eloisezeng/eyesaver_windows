@@ -11,14 +11,6 @@ class PixelSettings:
         self.button_next_to_stop_vid = [int(i) for i in self.button_next_to_stop_vid]
         self.vb_settings = settings["vb_settings"].split(", ")
         self.vb_settings = [int(i) for i in self.vb_settings]
-        self.exit_settings = settings["exit_settings"].split(", ")
-        self.exit_settings = [int(i) for i in self.exit_settings]
-        self.reactions = settings["reactions"].split(", ")
-        self.reactions = [int(i) for i in self.reactions]
-        self.clapping = settings["clapping"].split(", ")
-        self.clapping = [int(i) for i in self.clapping]
-        self.thumbsup = settings["thumbsup"].split(", ")
-        self.thumbsup = [int(i) for i in self.thumbsup]
         self.pos0 = settings["0"].split(", ")
         self.pos1 = settings["1"].split(", ")
         self.pos2 = settings["2"].split(", ")
@@ -35,11 +27,19 @@ class PixelSettings:
                                   self.pos4, self.pos5, self.pos6, self.pos7, 
                                   self.pos8, self.pos9, self.pos10, self.pos11])
         self.vb_grid = self.vb_grid.astype(np.int)
-    
+        self.exit_settings = settings["exit_settings"].split(", ")
+        self.exit_settings = [int(i) for i in self.exit_settings]
+        self.reactions = settings["reactions"].split(", ")
+        self.reactions = [int(i) for i in self.reactions]
+        self.clapping = settings["clapping"].split(", ")
+        self.clapping = [int(i) for i in self.clapping]
+        self.thumbsup = settings["thumbsup"].split(", ")
+        self.thumbsup = [int(i) for i in self.thumbsup]
+        
     def stop_video(self):
-        if self.os == 'macbook pro 13-inch':
+        if "mac" in self.os:
             py.hotkey('command', 'shift', 'v') # stop video
-        elif self.os == 'windows':
+        elif "windows" in self.os:
             py.hotkey('alt', 'shift', 'v') # stop video
         
     def click_arrow_to_right_stop_vid(self):
