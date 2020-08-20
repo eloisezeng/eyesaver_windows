@@ -35,7 +35,7 @@ def request_pose(): # Request
     return jsonify(posts), 201
 
     # Run this to add a post
-    # curl -i -H "Content-Type: application/json" -X POST -d '{"button":"1"}' http://127.0.0.1:5000/service/posts
+    # curl -i -H "Content-Type: application/json" -X POST -d '{"button":"2"}' http://127.0.0.1:5000/service/posts
 
 #########################################################################################################
 # Pose Mapping

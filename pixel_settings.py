@@ -43,23 +43,23 @@ class PixelSettings:
             py.hotkey('alt', 'shift', 'v') # stop video
         
     def click_arrow_to_right_stop_vid(self):
-        py.click(x=self.button_next_to_stop_vid[0],y=self.button_next_to_stop_vid[1])  # click on arrow on the right of stop video
+        py.click(self.button_next_to_stop_vid[0],self.button_next_to_stop_vid[1])  # click on arrow on the right of stop video
 
     def click_vb_settings(self):
-        py.click(x=self.vb_settings[0],y=self.vb_settings[1]) # open virtual background settings
+        py.click(self.vb_settings[0],self.vb_settings[1]) # open virtual background settings
 
     def click_VB(self, button): # position of video in zoom e.g. 0 maps to none
-        py.click(x=self.vb_grid[button][0], y=self.vb_grid[button][1])
+        py.click(self.vb_grid[button][0], self.vb_grid[button][1])
 
     def click_exit_settings(self):
-        py.click(x=self.exit_settings[0],y=self.exit_settings[1]) # click red x to settings
+        py.click(self.exit_settings[0],self.exit_settings[1]) # click red x to settings
     
     def click_reactions(self):
-        py.click(x=self.reactions[0],y=self.reactions[1]) # click on reactions
+        py.click(self.reactions[0],self.reactions[1]) # click on reactions
     
     def click_thumbsup(self):
-        py.click(x=self.thumbsup[0],y=self.thumbsup[1]) # click thumbsup
+        py.click(self.thumbsup[0],self.thumbsup[1]) # click thumbsup
     
     def click_clapping(self):
-        py.click(x=self.clapping[0],y=self.clapping[1]) # click clapping
+        py.click(self.clapping[0],self.clapping[1]) # click clapping
         
