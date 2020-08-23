@@ -6,7 +6,7 @@ import requests
 class PixelSettings:
 
     def __init__(self, settings):
-        self.os = settings["os"]
+        self.computer = settings["computer"]
         self.button_next_to_stop_vid = settings["button_next_to_stop_vid"].split(", ")
         self.button_next_to_stop_vid = [int(i) for i in self.button_next_to_stop_vid]
         self.vb_settings = settings["vb_settings"].split(", ")
@@ -37,9 +37,9 @@ class PixelSettings:
         self.thumbsup = [int(i) for i in self.thumbsup]
         
     def stop_video(self):
-        if "mac" in self.os:
+        if "mac" in self.computer:
             py.hotkey('command', 'shift', 'v') # stop video
-        elif "windows" in self.os:
+        elif "windows" in self.computer:
             py.hotkey('alt', 'shift', 'v') # stop video
         
     def click_arrow_to_right_stop_vid(self):

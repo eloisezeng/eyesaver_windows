@@ -1,3 +1,6 @@
+Things to do
+- Change port number
+
 # Information about the es_scripts_service package
 
 - change_vb.py has functions that change the virtual background or do reactions (thumbsup/clapping)

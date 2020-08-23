@@ -35,7 +35,7 @@ def request_pose(): # Request
     return jsonify(posts), 201
 
     # Run this to add a post
-    # curl -i -H "Content-Type: application/json" -X POST -d '{"button":"7"}' http://127.0.0.1:5000/service/posts
+    # curl -i -H "Content-Type: application/json" -X POST -d '{"button":"5"}' http://127.0.0.1:5000/service/posts
 
 #########################################################################################################
 # Pose Mapping
@@ -92,7 +92,7 @@ def initialize_poses():
 """DELETE JSON INSIDE SETTINGS WHEN DEPLOYING SERVICE"""
 # settings = []
 settings = [{
-        "os": "macbook pro 13-inch",
+        "computer": "macbook pro 13-inch",
         "button_next_to_stop_vid": "170, 860",
         "vb_settings": "270, 780",
         "exit_settings": "345, 152",
