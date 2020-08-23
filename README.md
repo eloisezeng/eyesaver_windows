@@ -1,5 +1,6 @@
 Things to do
 - Change port number
+- carrots chasing zoom logo
 
 # Information about the es_scripts_service package
 
