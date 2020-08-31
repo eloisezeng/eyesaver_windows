@@ -5,6 +5,7 @@ from flask import Flask, jsonify, abort, request
 from response import response 
 import urllib, json
 import requests
+from flask_cors import CORS, cross_origin
 
 #########################################################################################################
 # Posts/Requests
@@ -12,30 +13,32 @@ import requests
 posts = [] # requested button
      # User requests a pose and it gets added to posts
 app = Flask(__name__)
-
-@app.route("/service/posts", methods=["GET"]) 
+CORS(app)
+@app.route("/posts", methods=["GET"]) 
 def get_posts():
     return jsonify(posts), 201
 
-@app.route("/service/posts", methods=["POST"])
+@app.route("/posts", methods=["POST"])
+# @cross_origin()
 def request_pose(): # Request
     if not request.json: # or not "button" in request.json:
         abort(400)
-    post = { # requested button
-        "button": request.json["button"]
+    post = {
+        "position": request.json["position"],
+        "mode": request.json["mode"]
     }
-    url_poses = "http://127.0.0.1:5000/service/poses"
-    mapping = requests.get(url_poses)
-    mapping = mapping.json()[-1] # get most recent request mapping for user
-    url_settings = "http://127.0.0.1:5000/service/settings"
+    # url_poses = "http://127.0.0.1:5000/poses"
+    # mapping = requests.get(url_poses)
+    # mapping = mapping.json()[-1] # get most recent request mapping for user
+    url_settings = "http://127.0.0.1:5000/settings"
     settings = requests.get(url_settings)
     settings = settings.json()[-1]
-    response(mapping, post["button"], settings) # action
+    response(post, settings) # action
     posts.append(post) # see post on website
     return jsonify(posts), 201
 
     # Run this to add a post
-    # curl -i -H "Content-Type: application/json" -X POST -d '{"button":"0"}' http://127.0.0.1:5000/service/posts
+    # curl -i -H "Content-Type: application/json" -X POST -d '{"button":"0"}' http://127.0.0.1:5000/posts
 
 #########################################################################################################
 # Pose Mapping
@@ -58,11 +61,11 @@ poses = [{
         "11": "default",
         }]
 
-@app.route("/service/poses", methods=["GET"])
+@app.route("/poses", methods=["GET"])
 def get_poses():
     return jsonify(poses), 201
 
-@app.route("/service/poses", methods=["POST"])
+@app.route("/poses", methods=["POST"])
 def initialize_poses():
     if not request.json:
         abort(400)
@@ -85,7 +88,7 @@ def initialize_poses():
     poses.append(pose)
     return jsonify(poses), 201
     # Run this to add the user"s "button to pose" mapping
-    # curl -i -H "Content-Type: application/json" -X POST -d '{"0":"default", "1":"", "2":""}' http://127.0.0.1:5000/service/poses
+    # curl -i -H "Content-Type: application/json" -X POST -d '{"0":"default", "1":"", "2":""}' http://127.0.0.1:5000/poses
 
 #########################################################################################################
 # Pixel Settings
@@ -113,11 +116,11 @@ settings = [{
         "11": "1000, 715",
     }]
 
-@app.route("/service/settings", methods=["GET"])
+@app.route("/settings", methods=["GET"])
 def get_settings(): # all settings on local server
     return jsonify(settings), 201
     
-@app.route("/service/settings", methods=["POST"])
+@app.route("/settings", methods=["POST"])
 def initialize_settings():
     if not request.json:
         abort(400)
@@ -146,8 +149,8 @@ def initialize_settings():
     settings.append(setting)
     return jsonify(settings), 201
     # Run this to add settings for the user
-    # curl -i -H "Content-Type: application/json" -X POST -d '{"os":"", "button_next_to_stop_vid":""}' http://127.0.0.1:5000/service/settings
+    # curl -i -H "Content-Type: application/json" -X POST -d '{"os":"", "button_next_to_stop_vid":""}' http://127.0.0.1:5000/settings
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
 
