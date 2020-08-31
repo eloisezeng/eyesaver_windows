@@ -27,68 +27,14 @@ def request_pose(): # Request
         "position": request.json["position"],
         "mode": request.json["mode"]
     }
-    # url_poses = "http://127.0.0.1:5000/poses"
-    # mapping = requests.get(url_poses)
-    # mapping = mapping.json()[-1] # get most recent request mapping for user
     url_settings = "http://127.0.0.1:5000/settings"
     settings = requests.get(url_settings)
     settings = settings.json()[-1]
     response(post, settings) # action
     posts.append(post) # see post on website
     return jsonify(posts), 201
-
     # Run this to add a post
     # curl -i -H "Content-Type: application/json" -X POST -d '{"button":"0"}' http://127.0.0.1:5000/posts
-
-#########################################################################################################
-# Pose Mapping
-"""DELETE JSON INSIDE POSES WHEN DEPLOYING SERVICE"""
-"""Change to poses = []"""
-poses = [{ 
-        "thumbsup": "thumbsup",
-        "clapping": "clapping",
-        "0": "default", # no background
-        "1": "default", # San Fran
-        "2": "default", # Grass
-        "3": "default", # Earth
-        "4": "default", # Northern Lights
-        "5": "default", # Beach
-        "6": "default", # "default"
-        "7": "distracted", # distracted
-        "8": "default", # shake head
-        "9": "default",
-        "10": "default",
-        "11": "default",
-        }]
-
-@app.route("/poses", methods=["GET"])
-def get_poses():
-    return jsonify(poses), 201
-
-@app.route("/poses", methods=["POST"])
-def initialize_poses():
-    if not request.json:
-        abort(400)
-    pose = {
-        "thumbsup": "thumbsup",
-        "clapping": "clapping",
-        "0": "default",  
-        "1": request.json["1"],
-        "2": request.json["2"],
-        "3": request.json["3"],
-        "4": request.json["4"],
-        "5": request.json["5"],
-        "6": request.json["6"],
-        "7": request.json["7"],
-        "8": request.json["8"],
-        "9": request.json["9"],
-        "10": request.json["10"],
-        "11": request.json["11"],
-    }
-    poses.append(pose)
-    return jsonify(poses), 201
-    # Run this to add the user"s "button to pose" mapping
-    # curl -i -H "Content-Type: application/json" -X POST -d '{"0":"default", "1":"", "2":""}' http://127.0.0.1:5000/poses
 
 #########################################################################################################
 # Pixel Settings
