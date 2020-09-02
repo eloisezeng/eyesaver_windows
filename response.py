@@ -15,8 +15,8 @@ def response(post, settings):
         request.ps.click_arrow_to_right_stop_vid()
     elif position == 'click_vb_settings':
         request.ps.click_vb_settings()
-    elif position == 'click_VB': # fix this
-        request.ps.click_VB(int(position)) # how do we know position?
+    elif mode == 'click_VB':
+        request.ps.click_VB(int(position))
     elif position == 'click_exit_settings':
         request.ps.click_exit_settings()
     elif position == 'click_reactions':

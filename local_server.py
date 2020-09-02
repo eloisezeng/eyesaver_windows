@@ -1,11 +1,12 @@
 """
 Server manages user data and requests.
 User presses button to request a pose. Server calls response.py."""
-from flask import Flask, jsonify, abort, request
+from flask import Flask, jsonify, abort, request, url_for
 from response import response 
 import urllib, json
 import requests
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
+import os
 
 #########################################################################################################
 # Posts/Requests
@@ -27,14 +28,16 @@ def request_pose(): # Request
         "mode": request.json["mode"],
         "vid_length": request.json["vid_length"]
     }
-    url_settings = "http://127.0.0.1:5000/settings"
+    stream = os.popen('ipconfig getifaddr en0') # gets ip address: 192.168.X.X
+    ip = stream.read().rstrip() # gets rid of newline
+    url_settings = "http://" + ip + ":61405/settings"
     settings = requests.get(url_settings)
     settings = settings.json()[-1]
     response(post, settings) # action
     posts.append(post) # see post on website
     return jsonify(posts), 201
     # Run this to add a post
-    # curl -i -H "Content-Type: application/json" -X POST -d '{"position":"click_arrow_to_right_stop_vid", "mode":"hi", "vid_length":"hi"}' http://127.0.0.1:5000/posts
+    # curl -i -H "Content-Type: application/json" -X POST -d '{"position":"click_arrow_to_right_stop_vid", "mode":"hi", "vid_length":"hi"}' http://192.168.1.8:61405/posts
 
 #########################################################################################################
 # Pixel Settings
@@ -95,8 +98,10 @@ def initialize_settings():
     settings.append(setting)
     return jsonify(settings), 201
     # Run this to add settings for the user
-    # curl -i -H "Content-Type: application/json" -X POST -d '{"os":"", "button_next_to_stop_vid":""}' http://127.0.0.1:5000/settings
+    # curl -i -H "Content-Type: application/json" -X POST -d '{"os":"", "button_next_to_stop_vid":""}' http://192.168.1.8:61405/settings
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+    stream = os.popen('ipconfig getifaddr en0')
+    ip = stream.read().rstrip()
+    app.run(host=ip, port=61405, debug=True) # how will local server know which host to run at?
 
