@@ -6,6 +6,7 @@ def response(post, settings):
     request = changeVB(settings)
     position = post["position"]
     mode = post["mode"]
+    vid_length = post["vid_length"]
     time.sleep(1) # DELETE when deploy
     # Test the pixel settings
     if position == 'stop_video':
@@ -14,7 +15,7 @@ def response(post, settings):
         request.ps.click_arrow_to_right_stop_vid()
     elif position == 'click_vb_settings':
         request.ps.click_vb_settings()
-    elif position == 'click_VB':
+    elif position == 'click_VB': # fix this
         request.ps.click_VB(int(position)) # how do we know position?
     elif position == 'click_exit_settings':
         request.ps.click_exit_settings()
@@ -32,7 +33,7 @@ def response(post, settings):
     elif mode == 'default':
         request.default(int(position))
     elif mode == 'distracted':
-        request.distracted(int(position))
+        request.distracted(int(position), int(vid_length))
 
         
     

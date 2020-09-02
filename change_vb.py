@@ -39,7 +39,7 @@ class changeVB: # change virtual background
         time.sleep(0.2)
         self.ps.click_exit_settings()
 
-    def distracted(self, position, vid_length=7): # distraction
+    def distracted(self, position, vid_length): # distraction
         self.open_virt_settings()
         time.sleep(0.2)
         self.ps.click_VB(position) # position of distracted VB

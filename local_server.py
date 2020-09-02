@@ -19,13 +19,13 @@ def get_posts():
     return jsonify(posts), 201
 
 @app.route("/posts", methods=["POST"])
-# @cross_origin()
 def request_pose(): # Request
     if not request.json: # or not "button" in request.json:
         abort(400)
     post = {
         "position": request.json["position"],
-        "mode": request.json["mode"]
+        "mode": request.json["mode"],
+        "vid_length": request.json["vid_length"]
     }
     url_settings = "http://127.0.0.1:5000/settings"
     settings = requests.get(url_settings)
@@ -34,7 +34,7 @@ def request_pose(): # Request
     posts.append(post) # see post on website
     return jsonify(posts), 201
     # Run this to add a post
-    # curl -i -H "Content-Type: application/json" -X POST -d '{"button":"0"}' http://127.0.0.1:5000/posts
+    # curl -i -H "Content-Type: application/json" -X POST -d '{"position":"click_arrow_to_right_stop_vid", "mode":"hi", "vid_length":"hi"}' http://127.0.0.1:5000/posts
 
 #########################################################################################################
 # Pixel Settings
@@ -42,12 +42,12 @@ def request_pose(): # Request
 # settings = []
 settings = [{
         "computer": "macbook pro 13-inch",
-        "button_next_to_stop_vid": "170, 860",
-        "vb_settings": "270, 780",
-        "exit_settings": "345, 152",
-        "reactions": "1039, 870",
-        "thumbsup": "1058, 815",
-        "clapping": "1020, 817",
+        "click_arrow_to_right_stop_vid": "170, 860",
+        "click_vb_settings": "270, 780",
+        "click_exit_settings": "345, 152",
+        "click_reactions": "1039, 870",
+        "click_thumbsup": "1058, 815",
+        "click_clapping": "1020, 817",
         "0": "640, 571",
         "1": "765, 571",
         "2": "882, 571",
@@ -65,20 +65,20 @@ settings = [{
 @app.route("/settings", methods=["GET"])
 def get_settings(): # all settings on local server
     return jsonify(settings), 201
-    
+
 @app.route("/settings", methods=["POST"])
 def initialize_settings():
     if not request.json:
         abort(400)
   
     setting = {
-        "os": request.json["os"],
-        "button_next_to_stop_vid": request.json["button_next_to_stop_vid"],
-        "vb_settings": request.json["vb_settings"],
-        "exit_settings": request.json["exit_settings"],
-        "reactions": request.json["reactions"],
-        "thumbsup": request.json["thumbsup"],
-        "clapping": request.json["clapping"],
+        "computer": request.json["computer"],
+        "click_arrow_to_right_stop_vid": request.json["click_arrow_to_right_stop_vid"],
+        "click_vb_settings": request.json["click_vb_settings"],
+        "click_exit_settings": request.json["click_exit_settings"],
+        "click_reactions": request.json["click_reactions"],
+        "click_thumbsup": request.json["click_thumbsup"],
+        "click_clapping": request.json["click_clapping"],
         "0": request.json["0"],
         "1": request.json["1"],
         "2": request.json["2"],
