@@ -1,0 +1,37 @@
+[
+    {
+      "id": "a00bc5d3-661f-414f-a20f-ee38c3b9c8d0",
+      "title": "None",
+      "position": "0",
+      "mode": "default",
+      "vid_length": ""
+    },
+    {
+      "id": "5c5a9dba-8b2b-4ba5-85b9-1b01d26d7ee4",
+      "title": "Normal",
+      "position": "6",
+      "mode": "default",
+      "vid_length": ""
+    },
+    {
+      "id": "e774d693-f8a1-4edc-bf26-136e1af15413",
+      "title": "Distraction",
+      "position": "7",
+      "mode": "distracted",
+      "vid_length": "7"
+    },
+    {
+      "id": "433fdbc8-cd50-4d0f-86b7-d61ba1862b2d",
+      "title": "Thumbsup",
+      "position": "thumbsup",
+      "mode": "thumbsup",
+      "vid_length": ""
+    },
+    {
+      "id": "29029c5d-47e1-415f-a8c1-2170a613b2f7",
+      "title": "Clapping",
+      "position": "clapping",
+      "mode": "clapping",
+      "vid_length": ""
+    }
+  ]

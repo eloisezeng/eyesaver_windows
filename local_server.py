@@ -40,6 +40,79 @@ def request_pose(): # Request
     # curl -i -H "Content-Type: application/json" -X POST -d '{"position":"click_arrow_to_right_stop_vid", "mode":"hi", "vid_length":"hi"}' http://192.168.1.8:61405/posts
 
 #########################################################################################################
+# Add and delete buttons
+buttons = []
+with open("user_data/buttons.json", "r+") as file:
+        buttons = json.load(file)
+
+@app.route("/buttons", methods=["GET"]) 
+def get_buttons():
+    return jsonify(buttons), 201
+
+@app.route("/buttons", methods=["POST"])
+def add_button(): # Request
+    if not request.json: # or not "button" in request.json:
+        abort(400)
+    with open("user_data/buttons.json", "r+") as file:
+        data = json.load(file)
+        button = {
+        "id": request.json["id"],
+        "title": request.json["title"],
+        "position": request.json["position"],
+        "mode": request.json["mode"],
+        "vid_length": request.json["vid_length"]
+    }
+        data.append(button)
+        file.seek(0)
+        json.dump(data, file, indent=4)
+    buttons.append(button) # see post on website
+    
+    return jsonify(buttons), 201
+
+@app.route("/buttons/<id>", methods=["DELETE"]) 
+def delete_buttons(id):
+    button = [button for button in buttons if button['id'] == id]
+    if len(button) == 0:
+        abort(404)
+    buttons.remove(button[0])
+    with open("user_data/buttons.json", "r+") as file:
+        data = json.load(file)
+        cnt = 0
+        for button in data:
+            if button["id"] == id:
+                break
+            cnt += 1
+        del data[cnt]
+        file.seek(0) # reset the file pointer to position 0 
+        json.dump(data, file, indent=4) # overwrite file with dict
+        file.truncate() # delete everything after the list
+    return jsonify(buttons), 201
+# curl -i -H "Content-Type: application/json" -X DELETE -d '{"id":"a6c45aa5-25c2-470e-a6eb-2ccec9c35f2d"}' http://192.168.1.8:61405/buttons/<id>
+# curl -X DELETE "http://192.168.1.8:61405/buttons/c79aec61-557e-4b90-ba09-f626862106ff"
+
+#########################################################################################################
+# Get pixels, not ready for parsing
+pixel_settings = []
+@app.route("/pixelsettings", methods=["GET"]) 
+def get_pixel_settings():
+    with open("user_data/pixel_settings.json", "r+") as file:
+        posts = json.load(file)
+    return jsonify(posts), 201
+
+@app.route("/pixelsettings", methods=["POST"])
+def edit_setting(): # Request
+    if not request.json: # or not "button" in request.json:
+        abort(400)
+    button = {
+        "position": request.json["position"],
+        "mode": request.json["mode"],
+        "vid_length": request.json["vid_length"]
+    }
+    
+    buttons.append(button) # see post on website
+    return jsonify(buttons), 201
+
+#########################################################################################################
 # Pixel Settings
 """DELETE JSON INSIDE SETTINGS WHEN DEPLOYING SERVICE"""
 # settings = []
@@ -99,7 +172,7 @@ def initialize_settings():
     return jsonify(settings), 201
     # Run this to add settings for the user
     # curl -i -H "Content-Type: application/json" -X POST -d '{"os":"", "button_next_to_stop_vid":""}' http://192.168.1.8:61405/settings
-
+    
 if __name__ == "__main__":
     stream = os.popen('ipconfig getifaddr en0')
     ip = stream.read().rstrip()
