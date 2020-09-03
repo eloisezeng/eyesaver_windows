@@ -6,4 +6,3 @@
 - local_server.py is the server that runs response.py when a user presses a button
 
 # Need to confirm on Windows
-- getIp.sh

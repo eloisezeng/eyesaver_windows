@@ -42,11 +42,11 @@ def request_pose(): # Request
 #########################################################################################################
 # Add and delete buttons
 buttons = []
-with open("user_data/buttons.json", "r+") as file:
-        buttons = json.load(file)
 
 @app.route("/buttons", methods=["GET"]) 
 def get_buttons():
+    with open("user_data/buttons.json", "r+") as file:
+        buttons = json.load(file)
     return jsonify(buttons), 201
 
 @app.route("/buttons", methods=["POST"])
@@ -65,16 +65,13 @@ def add_button(): # Request
         data.append(button)
         file.seek(0)
         json.dump(data, file, indent=4)
-    buttons.append(button) # see post on website
+        file.truncate()
+    # data.append(button) # see post on website
     
-    return jsonify(buttons), 201
+    return jsonify(data), 201
 
 @app.route("/buttons/<id>", methods=["DELETE"]) 
 def delete_buttons(id):
-    button = [button for button in buttons if button['id'] == id]
-    if len(button) == 0:
-        abort(404)
-    buttons.remove(button[0])
     with open("user_data/buttons.json", "r+") as file:
         data = json.load(file)
         cnt = 0
@@ -86,31 +83,42 @@ def delete_buttons(id):
         file.seek(0) # reset the file pointer to position 0 
         json.dump(data, file, indent=4) # overwrite file with dict
         file.truncate() # delete everything after the list
-    return jsonify(buttons), 201
+    return jsonify(data), 201
 # curl -i -H "Content-Type: application/json" -X DELETE -d '{"id":"a6c45aa5-25c2-470e-a6eb-2ccec9c35f2d"}' http://192.168.1.8:61405/buttons/<id>
-# curl -X DELETE "http://192.168.1.8:61405/buttons/c79aec61-557e-4b90-ba09-f626862106ff"
+# curl -X DELETE "http://192.168.1.8:61405/buttons/bf1f6b44-8716-4a1e-88bc-7d830478fcb0"
 
 #########################################################################################################
 # Get pixels, not ready for parsing
 pixel_settings = []
+
 @app.route("/pixelsettings", methods=["GET"]) 
 def get_pixel_settings():
     with open("user_data/pixel_settings.json", "r+") as file:
-        posts = json.load(file)
-    return jsonify(posts), 201
+        pixel_settings = json.load(file)
+    return jsonify(pixel_settings), 201
 
 @app.route("/pixelsettings", methods=["POST"])
 def edit_setting(): # Request
     if not request.json: # or not "button" in request.json:
         abort(400)
-    button = {
-        "position": request.json["position"],
-        "mode": request.json["mode"],
-        "vid_length": request.json["vid_length"]
+    setting = {
+        "id": request.json["id"],
+        "x": request.json["x"],
+        "y": request.json["y"],
     }
-    
-    buttons.append(button) # see post on website
-    return jsonify(buttons), 201
+    with open("user_data/pixel_settings.json", "r+") as file:
+        data = json.load(file)
+        cnt = 0
+        for obj in data:
+            if obj["id"] == setting["id"]:
+                break
+            cnt += 1 # indice of object in data
+        data[cnt]["x"] = setting["x"]
+        data[cnt]["y"] = setting["y"]
+        file.seek(0)  # rewind
+        json.dump(data, file, indent=4)
+        file.truncate()
+    return jsonify(data), 201
 
 #########################################################################################################
 # Pixel Settings
