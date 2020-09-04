@@ -2,39 +2,41 @@
 import pyautogui as py
 import numpy as np
 import requests
+import json
 
 class PixelSettings:
 
-    def __init__(self, settings):
-        self.computer = settings["computer"]
-        self.button_next_to_stop_vid = settings["click_arrow_to_right_stop_vid"].split(", ")
-        self.button_next_to_stop_vid = [int(i) for i in self.button_next_to_stop_vid]
-        self.vb_settings = settings["click_vb_settings"].split(", ")
-        self.vb_settings = [int(i) for i in self.vb_settings]
-        self.pos0 = settings["0"].split(", ")
-        self.pos1 = settings["1"].split(", ")
-        self.pos2 = settings["2"].split(", ")
-        self.pos3 = settings["3"].split(", ")
-        self.pos4 = settings["4"].split(", ")
-        self.pos5 = settings["5"].split(", ")
-        self.pos6 = settings["6"].split(", ")
-        self.pos7 = settings["7"].split(", ")
-        self.pos8 = settings["8"].split(", ")
-        self.pos9 = settings["9"].split(", ")
-        self.pos10 = settings["10"].split(", ")
-        self.pos11 = settings["11"].split(", ")
-        self.vb_grid = np.vstack([self.pos0, self.pos1, self.pos2, self.pos3, 
-                                  self.pos4, self.pos5, self.pos6, self.pos7, 
-                                  self.pos8, self.pos9, self.pos10, self.pos11])
-        self.vb_grid = self.vb_grid.astype(np.int)
-        self.exit_settings = settings["click_exit_settings"].split(", ")
-        self.exit_settings = [int(i) for i in self.exit_settings]
-        self.reactions = settings["click_reactions"].split(", ")
-        self.reactions = [int(i) for i in self.reactions]
-        self.clapping = settings["click_clapping"].split(", ")
-        self.clapping = [int(i) for i in self.clapping]
-        self.thumbsup = settings["click_thumbsup"].split(", ")
-        self.thumbsup = [int(i) for i in self.thumbsup]
+    def __init__(self):
+        self.computer = 'mac'
+        with open("user_data/pixel_settings.json", 'r') as file:
+            def as_float(settings):
+                if settings["x"] != "":
+                    settings["x"] = int(float(settings["x"]))
+                if settings["y"] != "":
+                    settings["y"] = int(float(settings["y"]))
+                return settings
+            settings = json.load(file, object_hook=as_float)
+            self.button_next_to_stop_vid = (settings[0]["x"], settings[0]["y"])
+            self.vb_settings = (settings[1]["x"], settings[1]["y"])
+            self.exit_settings = (settings[2]["x"], settings[2]["y"])
+            self.pos0 = (settings[3]["x"], settings[3]["y"])
+            self.pos1 = (settings[4]["x"], settings[3]["y"])
+            self.pos2 = (settings[5]["x"], settings[3]["y"])
+            self.pos3 = (settings[6]["x"], settings[3]["y"])
+            self.pos4 = (settings[3]["x"], settings[7]["y"])
+            self.pos5 = (settings[4]["x"], settings[7]["y"])
+            self.pos6 = (settings[5]["x"], settings[7]["y"])
+            self.pos7 = (settings[6]["x"], settings[7]["y"])
+            self.pos8 = (settings[3]["x"], settings[8]["y"])
+            self.pos9 = (settings[4]["x"], settings[8]["y"])
+            self.pos10 = (settings[5]["x"], settings[8]["y"])
+            self.pos11 = (settings[6]["x"], settings[8]["y"])
+            self.reactions = (settings[9]["x"], settings[9]["y"])
+            self.thumbsup = (settings[10]["x"], settings[10]["y"])
+            self.clapping = (settings[11]["x"], settings[11]["y"])
+            self.vb_grid = np.vstack([self.pos0, self.pos1, self.pos2, self.pos3, 
+                                    self.pos4, self.pos5, self.pos6, self.pos7, 
+                                    self.pos8, self.pos9, self.pos10, self.pos11])                 
         
     def stop_video(self):
         if "mac" in self.computer:

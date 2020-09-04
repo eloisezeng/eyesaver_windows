@@ -2,8 +2,8 @@ import os
 from change_vb import changeVB
 import time # DELETE when deploy
 
-def response(post, settings):
-    request = changeVB(settings)
+def response(post):
+    request = changeVB()
     position = post["position"]
     mode = post["mode"]
     vid_length = post["vid_length"]

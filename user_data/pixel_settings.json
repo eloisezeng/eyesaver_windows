@@ -72,65 +72,11 @@
         "mode": "click_VB"
     },
     {
-        "id": "b503d562-1b5c-4511-8c48-222825ed2af5",
-        "name": "5",
-        "x": "",
-        "y": "",
-        "label": "Position 5",
-        "img": "",
-        "mode": "click_VB"
-    },
-    {
-        "id": "6ab2ff3b-e700-4dc3-a578-42a50da6e5dc",
-        "name": "6",
-        "x": "",
-        "y": "",
-        "label": "Position 6",
-        "img": "",
-        "mode": "click_VB"
-    },
-    {
-        "id": "1fb2b76e-8958-47e6-b21e-196122d8106c",
-        "name": "7",
-        "x": "",
-        "y": "",
-        "label": "Position 7",
-        "img": "",
-        "mode": "click_VB"
-    },
-    {
         "id": "aed8a222-f792-431e-a597-26201fbf4eac",
         "name": "8",
         "x": "",
         "y": "",
         "label": "Position 8",
-        "img": "",
-        "mode": "click_VB"
-    },
-    {
-        "id": "f1b1324d-2b84-4ee3-ad75-7d15ac9614f7",
-        "name": "9",
-        "x": "",
-        "y": "",
-        "label": "Position 9",
-        "img": "",
-        "mode": "click_VB"
-    },
-    {
-        "id": "410de860-daa1-40c5-806f-3e4b5eb3d016",
-        "name": "10",
-        "x": "",
-        "y": "",
-        "label": "Position 10",
-        "img": "",
-        "mode": "click_VB"
-    },
-    {
-        "id": "f8097e36-65a5-49da-89af-b3a45c7a67d7",
-        "name": "11",
-        "x": "",
-        "y": "",
-        "label": "Position 11",
         "img": "",
         "mode": "click_VB"
     },

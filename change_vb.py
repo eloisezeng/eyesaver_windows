@@ -5,8 +5,8 @@ from pixel_settings import PixelSettings
 
 class changeVB: # change virtual background
     
-    def __init__(self, settings):
-        self.ps = PixelSettings(settings)
+    def __init__(self):
+        self.ps = PixelSettings()
         
     def initialize(self): # DELETE when it's an app
         time.sleep(1) 
