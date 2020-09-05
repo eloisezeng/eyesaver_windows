@@ -10,7 +10,6 @@ import os
 
 #########################################################################################################
 # Posts/Requests
-
 posts = [] # requested button
      # User requests a pose and it gets added to posts
 app = Flask(__name__)
@@ -28,7 +27,7 @@ def request_pose(): # Request
         "mode": request.json["mode"],
         "vid_length": request.json["vid_length"]
     }
-    stream = os.popen('ipconfig getifaddr en0') # gets ip address: 192.168.X.X
+    stream = os.popen('ipconfig getifaddr en0') # gets ip address
     ip = stream.read().rstrip() # gets rid of newline
     # url_settings = "http://" + ip + ":61405/settings"
     url_settings = "http://" + ip + ":61405/pixelsettings"
@@ -121,5 +120,10 @@ def edit_setting(): # Request
 if __name__ == "__main__":
     stream = os.popen('ipconfig getifaddr en0')
     ip = stream.read().rstrip() # get ip address
-    app.run(host=ip, port=61405, debug=True) # how will local server know which host to run at?
+    os.system("python3 generate_qr.py &") # & let's local_server.py and generate_qr.py run at the same time
+    app.run(host=ip, port=61405, debug=True, use_reloader=False) 
+    # set use_reloader to false so the python script runs only once
+    # reloader reloads the page each time i save an edit
+    
+    
 

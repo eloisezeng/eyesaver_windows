@@ -5,4 +5,6 @@
 - response.py is a python script that controls mouse clicking and key presses
 - local_server.py is the server that runs response.py when a user presses a button
 
-# Need to confirm on Windows
+# Todos
+- package.json: numpy, pyautogui, etc
+- Need to confirm on Windows
