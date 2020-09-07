@@ -1,3 +1,6 @@
 {
-    "qrcode": "brew install qrencode"
+    "qrcode": "brew install qrencode",
+    "certify http": "mkdir -p .cert",
+    "more certify": "mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem 'localhost'"
 }
+    

@@ -7,8 +7,8 @@ cmd_computer = "system_profiler SPHardwareDataType | grep  \'Model Identifier\'"
 # get model identifier of computer
 # system_profiler SPHardwareDataType | grep "Model Identifier"
 stream_computer = os.popen(cmd_computer)
-computer = stream_computer.read().strip()
-command_qr = "qrencode -o qrcode.png " + "\'ip: " + ip + " | " + computer + "\'" # use pipe so i can separate values
+computer = stream_computer.read().strip()[18:] # get rid of white space, remove Model Identifier
+command_qr = "qrencode -o qrcode.png " + "\'" + ip + "|" + computer + "\'" # use pipe so i can separate values
 os.popen(command_qr) # run command in terminal
 img = cv2.imread('qrcode.png')
 cv2.imshow('Press q to exit image',img)
