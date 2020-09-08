@@ -1,4 +1,5 @@
 """Change virtual backgrounds or reactions when in zoom meetings"""
+"""Used exact pixel position so not that good."""
 import pyautogui as py
 import time
 from pixel_settings import PixelSettings
