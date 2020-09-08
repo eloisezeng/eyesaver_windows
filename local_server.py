@@ -37,7 +37,7 @@ def request_pose(): # Request
     posts.append(post) # see post on website
     return jsonify(posts), 201
     # Run this to add a post
-    # curl -i -H "Content-Type: application/json" -X POST -d '{"position":"click_arrow_to_right_stop_vid", "mode":"hi", "vid_length":"hi"}' http://192.168.1.8:61405/posts
+    # curl -i -H "Content-Type: application/json" -X POST -d '{"position":"0", "mode":"hi", "vid_length":"hi"}' http://192.168.1.8:61405/posts
 
 #########################################################################################################
 # Add and delete buttons

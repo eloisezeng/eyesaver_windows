@@ -1,3 +1,4 @@
+"""Generate a qr code with data about the ip address and computer model"""
 import os
 from cv2 import cv2
 
