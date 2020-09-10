@@ -2,7 +2,8 @@
 Server manages user data and requests.
 User presses button to request a pose. Server calls response.py."""
 from flask import Flask, jsonify, abort, request, url_for
-from response import response 
+from response import response
+from get_position import getPositions 
 import urllib, json
 import requests
 from flask_cors import CORS
@@ -116,12 +117,36 @@ def edit_setting(): # Request
         json.dump(data, file, indent=4)
         file.truncate()
     return jsonify(data), 201
-  
+
+@app.route("/getpositions", methods=["POST"])
+def get_pixels(): # Request
+    if not request.json: # or not "button" in request.json:
+        abort(400)
+    setting = {
+        "name": request.json["name"],
+    }
+    get_pixels = getPositions()
+    x, y = get_pixels.mouse_listen()
+    with open("user_data/pixel_settings.json", "r+") as file:
+        data = json.load(file)
+        cnt = 0
+        for obj in data:
+            if obj["name"] == setting["name"]:
+                break
+            cnt += 1 # indice of object in data
+        data[cnt]["x"] = x
+        data[cnt]["y"] = y
+        file.seek(0)  # rewind
+        json.dump(data, file, indent=4)
+        file.truncate()
+    return jsonify(data), 201
+
 if __name__ == "__main__":
     stream = os.popen('ipconfig getifaddr en0')
     ip = stream.read().rstrip() # get ip address
     os.system("python3 generate_qr.py &") # & let's local_server.py and generate_qr.py run at the same time
     app.run(host=ip, port=61405, debug=True, use_reloader=False)
+    # app.run(host=ip, port=61405, debug=True) # DELETE
     # set use_reloader to false so the python script runs only once
     # reloader reloads the page each time i save an edit
     
