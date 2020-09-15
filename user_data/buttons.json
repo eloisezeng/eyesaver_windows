@@ -33,19 +33,5 @@
         "position": "9",
         "mode": "distracted",
         "vid_length": "7"
-    },
-    {
-        "id": "013a1e04-2a95-4ab5-a4a3-24a3d8753fbe",
-        "title": "Rocky",
-        "position": "7",
-        "mode": "default",
-        "vid_length": ""
-    },
-    {
-        "id": "09ff5fe9-8476-4329-bd4c-c97edd8c4d7b",
-        "title": "Cowboy",
-        "position": "8",
-        "mode": "default",
-        "vid_length": ""
     }
 ]
