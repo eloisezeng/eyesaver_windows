@@ -7,20 +7,6 @@
         "vid_length": ""
     },
     {
-        "id": "5c5a9dba-8b2b-4ba5-85b9-1b01d26d7ee4",
-        "title": "Normal",
-        "position": "6",
-        "mode": "default",
-        "vid_length": ""
-    },
-    {
-        "id": "e774d693-f8a1-4edc-bf26-136e1af15413",
-        "title": "Distraction",
-        "position": "7",
-        "mode": "distracted",
-        "vid_length": "7"
-    },
-    {
         "id": "433fdbc8-cd50-4d0f-86b7-d61ba1862b2d",
         "title": "Thumbsup",
         "position": "thumbsup",
@@ -32,6 +18,34 @@
         "title": "Clapping",
         "position": "clapping",
         "mode": "clapping",
+        "vid_length": ""
+    },
+    {
+        "id": "1427e2cc-e45e-4831-9b98-1aeeecd1ccff",
+        "title": "Normal",
+        "position": "6",
+        "mode": "default",
+        "vid_length": ""
+    },
+    {
+        "id": "50616fec-4227-450a-a688-d4ab442c0911",
+        "title": "Distracted",
+        "position": "9",
+        "mode": "distracted",
+        "vid_length": "7"
+    },
+    {
+        "id": "013a1e04-2a95-4ab5-a4a3-24a3d8753fbe",
+        "title": "Rocky",
+        "position": "7",
+        "mode": "default",
+        "vid_length": ""
+    },
+    {
+        "id": "09ff5fe9-8476-4329-bd4c-c97edd8c4d7b",
+        "title": "Cowboy",
+        "position": "8",
+        "mode": "default",
         "vid_length": ""
     }
 ]

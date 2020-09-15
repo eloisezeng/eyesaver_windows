@@ -30,7 +30,6 @@ def request_pose(): # Request
     }
     stream = os.popen('ipconfig getifaddr en0') # gets ip address
     ip = stream.read().rstrip() # gets rid of newline
-    # url_settings = "http://" + ip + ":61405/settings"
     url_settings = "http://" + ip + ":61405/pixelsettings"
     settings = requests.get(url_settings)
     settings = settings.json()[-1]
@@ -88,6 +87,19 @@ def delete_buttons(id):
 #########################################################################################################
 # Get pixels, not ready for parsing
 pixel_settings = []
+cmd_computer = "system_profiler SPHardwareDataType | grep  \'Model Identifier\'" 
+# get model identifier of computer
+# system_profiler SPHardwareDataType | grep "Model Identifier"
+stream_computer = os.popen(cmd_computer)
+computer = stream_computer.read().strip()[18:] # get rid of white space, remove Model Identifier
+try:
+    with open('user_data/' + computer + '.json', "r+") as file:
+        pixel_settings = json.load(file) 
+    with open('user_data/pixel_settings.json', "w") as file: # write to pixel_settings
+        json.dump(pixel_settings, file, indent=4)
+except OSError:
+    with open("user_data/pixel_settings.json", "r+") as file:
+        pixel_settings = json.load(file)
 
 @app.route("/pixelsettings", methods=["GET"]) 
 def get_pixel_settings():
@@ -145,8 +157,8 @@ if __name__ == "__main__":
     stream = os.popen('ipconfig getifaddr en0')
     ip = stream.read().rstrip() # get ip address
     os.system("python3 generate_qr.py &") # & let's local_server.py and generate_qr.py run at the same time
-    app.run(host=ip, port=61405, debug=True, use_reloader=False)
-    # app.run(host=ip, port=61405, debug=True) # DELETE
+    # app.run(host=ip, port=61405, debug=True, use_reloader=False)
+    app.run(host=ip, port=61405, debug=True) # DELETE
     # set use_reloader to false so the python script runs only once
     # reloader reloads the page each time i save an edit
     
