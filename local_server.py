@@ -156,7 +156,8 @@ def get_pixels(): # Request
 if __name__ == "__main__":
     stream = os.popen('ipconfig getifaddr en0')
     ip = stream.read().rstrip() # get ip address
-    os.system("python3 generate_qr.py &") # & let's local_server.py and generate_qr.py run at the same time
+    # don't generate qr bc http website can't scan it
+    # os.system("python3 generate_qr.py &") # & let's local_server.py and generate_qr.py run at the same time
     # app.run(host=ip, port=61405, debug=True, use_reloader=False)
     app.run(host=ip, port=61405, debug=True) # DELETE
     # set use_reloader to false so the python script runs only once

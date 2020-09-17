@@ -3,7 +3,7 @@
         "id": "a00bc5d3-661f-414f-a20f-ee38c3b9c8d0",
         "title": "None",
         "position": "0",
-        "mode": "default",
+        "mode": "none",
         "vid_length": ""
     },
     {
@@ -28,10 +28,31 @@
         "vid_length": ""
     },
     {
-        "id": "50616fec-4227-450a-a688-d4ab442c0911",
-        "title": "Distracted",
+        "id": "2d317a40-60eb-47bd-8a3d-c1cbaf441fe1",
+        "title": "No",
         "position": "9",
+        "mode": "action",
+        "vid_length": "3"
+    },
+    {
+        "id": "6ae97355-ccb4-46f7-b35c-73a1f0acd454",
+        "title": "Nod",
+        "position": "10",
+        "mode": "action",
+        "vid_length": "3"
+    },
+    {
+        "id": "136183f4-0dcc-458c-aed5-8a622433f0fd",
+        "title": "Distracted",
+        "position": "7",
         "mode": "distracted",
         "vid_length": "7"
+    },
+    {
+        "id": "a5b01015-2536-4045-967b-ff1e1b667f6c",
+        "title": "Hi",
+        "position": "8",
+        "mode": "action",
+        "vid_length": "2"
     }
 ]

@@ -51,4 +51,13 @@ class changeVB: # change virtual background
         time.sleep(0.2)
         self.ps.click_exit_settings()
 
+    def action(self, position, vid_length): # distraction
+        self.open_virt_settings()
+        time.sleep(0.2)
+        self.ps.click_VB(position) # position of action VB
+        time.sleep(vid_length) # length of action
+        self.ps.click_default_pos() # click on default. FIX THIS: Don't hardcode
+        time.sleep(0.2)
+        self.ps.click_exit_settings()
+
     

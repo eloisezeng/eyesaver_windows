@@ -7,7 +7,6 @@ def response(post):
     position = post["position"]
     mode = post["mode"]
     vid_length = post["vid_length"]
-    time.sleep(1) # DELETE when deploy
     # Test the pixel settings
     if position == 'stop_video':
         request.ps.stop_video()
@@ -30,10 +29,12 @@ def response(post):
         request.thumbsup()
     elif mode == 'clapping':
         request.clapping()
-    elif mode == 'default':
+    elif mode == 'default' or mode == 'none':
         request.default(int(position))
     elif mode == 'distracted':
         request.distracted(int(position), int(vid_length))
+    elif mode == 'action':
+        request.action(int(position), int(vid_length))
 
         
     
