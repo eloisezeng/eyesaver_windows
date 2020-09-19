@@ -3,7 +3,7 @@
       "id": "a00bc5d3-661f-414f-a20f-ee38c3b9c8d0",
       "title": "None",
       "position": "0",
-      "mode": "default",
+      "mode": "none",
       "vid_length": ""
     },
     {
@@ -19,6 +19,13 @@
       "position": "7",
       "mode": "distracted",
       "vid_length": "7"
+    },
+    {
+      "id": "e774d693-f8a1-4edc-bf26-136e1af15413",
+      "title": "Wave",
+      "position": "8",
+      "mode": "action",
+      "vid_length": "2"
     },
     {
       "id": "433fdbc8-cd50-4d0f-86b7-d61ba1862b2d",

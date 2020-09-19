@@ -1,6 +1,5 @@
 import os
 from change_vb import changeVB
-import time # DELETE when deploy
 
 def response(post):
     request = changeVB()

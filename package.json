@@ -1,5 +1,0 @@
-{
-    "qrcode": "brew install qrencode",
-    "mouse_click": "pip install pynput"
-}
-    

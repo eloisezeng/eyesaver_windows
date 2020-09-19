@@ -159,7 +159,8 @@ if __name__ == "__main__":
     # don't generate qr bc http website can't scan it
     # os.system("python3 generate_qr.py &") # & let's local_server.py and generate_qr.py run at the same time
     # app.run(host=ip, port=61405, debug=True, use_reloader=False)
-    app.run(host=ip, port=61405, debug=True) # DELETE
+    # app.run(host=ip, port=61405, debug=True)
+    app.run(host=ip, port=61405)
     # set use_reloader to false so the python script runs only once
     # reloader reloads the page each time i save an edit
     
