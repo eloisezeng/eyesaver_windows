@@ -7,7 +7,7 @@ from get_position import getPositions
 import urllib, json
 import requests
 from flask_cors import CORS
-import os
+import socket, os
 
 #########################################################################################################
 # Posts/Requests
@@ -28,10 +28,8 @@ def request_pose(): # Request
         "mode": request.json["mode"],
         "vid_length": request.json["vid_length"]
     }
-    # stream = os.popen('ipconfig getifaddr en0') # gets ip address
-    # ip = stream.read().rstrip() # gets rid of newline
-    # url_settings = "http://" + ip + ":61405/pixelsettings"
-    url_settings = "http://" + '198.162.1.13' + ":61405/pixelsettings"
+    ip = socket.gethostbyname(socket.gethostname())
+    url_settings = "http://" + ip + ":61405/pixelsettings"
     settings = requests.get(url_settings)
     settings = settings.json()[-1]
     response(post) # action
@@ -88,12 +86,9 @@ def delete_buttons(id):
 #########################################################################################################
 # Get pixels, not ready for parsing
 pixel_settings = []
-# cmd_computer = "system_profiler SPHardwareDataType | grep  \'Model Identifier\'" 
-# get model identifier of computer
-# system_profiler SPHardwareDataType | grep "Model Identifier"
-# stream_computer = os.popen(cmd_computer)
-# computer = stream_computer.read().strip()[18:] # get rid of white space, remove Model Identifier
-computer = 'windows' # fix this
+stream_computer = os.popen('wmic computersystem get model')
+computer = stream_computer.read()[6:].strip()
+
 try:
     with open('user_data/' + computer + '.json', "r+") as file:
         pixel_settings = json.load(file) 
@@ -156,13 +151,7 @@ def get_pixels(): # Request
     return jsonify(data), 201
 
 if __name__ == "__main__":
-    # stream = os.popen('ipconfig getifaddr en0')
-    # ip = stream.read().rstrip() # get ip address
-    ip = '192.168.1.13'
-    # don't generate qr bc http website can't scan it
-    # os.system("python3 generate_qr.py &") # & let's local_server.py and generate_qr.py run at the same time
-    # app.run(host=ip, port=61405, debug=True, use_reloader=False)
-    # app.run(host=ip, port=61405, debug=True)
+    ip = socket.gethostbyname(socket.gethostname())
     app.run(host=ip, port=61405)
     # set use_reloader to false so the python script runs only once
     # reloader reloads the page each time i save an edit
