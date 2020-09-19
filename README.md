@@ -1,4 +1,4 @@
-# EyeSaver MacOS Automation Package
+# EyeSaver WindowsOS Automation Package
 
 These scripts automate your computer to change your virtual background on Zoom. Download the EyeSaver WebApp so you can run these scripts when you press a button.
 
@@ -13,7 +13,7 @@ Run the Desktop App
 
 Install Requirements
 ---------------
-pip3 -r requirements.txt
+pip install -r requirements.txt
 
 Interested in the code?
 ---------------

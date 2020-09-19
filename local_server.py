@@ -28,9 +28,10 @@ def request_pose(): # Request
         "mode": request.json["mode"],
         "vid_length": request.json["vid_length"]
     }
-    stream = os.popen('ipconfig getifaddr en0') # gets ip address
-    ip = stream.read().rstrip() # gets rid of newline
-    url_settings = "http://" + ip + ":61405/pixelsettings"
+    # stream = os.popen('ipconfig getifaddr en0') # gets ip address
+    # ip = stream.read().rstrip() # gets rid of newline
+    # url_settings = "http://" + ip + ":61405/pixelsettings"
+    url_settings = "http://" + '198.162.1.13' + ":61405/pixelsettings"
     settings = requests.get(url_settings)
     settings = settings.json()[-1]
     response(post) # action
@@ -87,11 +88,12 @@ def delete_buttons(id):
 #########################################################################################################
 # Get pixels, not ready for parsing
 pixel_settings = []
-cmd_computer = "system_profiler SPHardwareDataType | grep  \'Model Identifier\'" 
+# cmd_computer = "system_profiler SPHardwareDataType | grep  \'Model Identifier\'" 
 # get model identifier of computer
 # system_profiler SPHardwareDataType | grep "Model Identifier"
-stream_computer = os.popen(cmd_computer)
-computer = stream_computer.read().strip()[18:] # get rid of white space, remove Model Identifier
+# stream_computer = os.popen(cmd_computer)
+# computer = stream_computer.read().strip()[18:] # get rid of white space, remove Model Identifier
+computer = 'windows' # fix this
 try:
     with open('user_data/' + computer + '.json', "r+") as file:
         pixel_settings = json.load(file) 
@@ -154,8 +156,9 @@ def get_pixels(): # Request
     return jsonify(data), 201
 
 if __name__ == "__main__":
-    stream = os.popen('ipconfig getifaddr en0')
-    ip = stream.read().rstrip() # get ip address
+    # stream = os.popen('ipconfig getifaddr en0')
+    # ip = stream.read().rstrip() # get ip address
+    ip = '192.168.1.13'
     # don't generate qr bc http website can't scan it
     # os.system("python3 generate_qr.py &") # & let's local_server.py and generate_qr.py run at the same time
     # app.run(host=ip, port=61405, debug=True, use_reloader=False)
