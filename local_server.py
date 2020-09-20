@@ -152,7 +152,7 @@ def get_pixels(): # Request
 
 if __name__ == "__main__":
     ip = socket.gethostbyname(socket.gethostname())
-    app.run(host=ip, port=61405)
+    app.run(host=ip, port=61405, debug=True)
     # set use_reloader to false so the python script runs only once
     # reloader reloads the page each time i save an edit
     

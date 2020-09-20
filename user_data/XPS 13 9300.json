@@ -2,8 +2,8 @@
     {
         "id": "c6749bc2-f453-4bd1-b9ea-2b5ab61f926c",
         "name": "click_arrow_to_right_stop_vid",
-        "x": "170",
-        "y": "860",
+        "x": 523,
+        "y": 2290,
         "label": "Arrow to the right of Stop Video",
         "img": "button_next_to_stop_vid",
         "mode": ""
@@ -11,8 +11,8 @@
     {
         "id": "e02eed16-962e-4e58-a4af-e08be3b87c2f",
         "name": "click_vb_settings",
-        "x": "270",
-        "y": "780",
+        "x": 651,
+        "y": 1996,
         "label": "Open Virtual Settings",
         "img": "vb_settings",
         "mode": ""
@@ -20,8 +20,8 @@
     {
         "id": "4d85b989-96b3-4b99-9d8b-3917940f45f8",
         "name": "click_exit_settings",
-        "x": "345",
-        "y": "152",
+        "x": 3194,
+        "y": 174,
         "label": "Exit Settings",
         "img": "exit_settings",
         "mode": ""
@@ -29,8 +29,8 @@
     {
         "id": "caf7c089-d13b-4d9b-a9d5-f2f410d8c8d4",
         "name": "0",
-        "x": "640",
-        "y": "571",
+        "x": 1759,
+        "y": 1434,
         "label": "Position 0",
         "img": "vb_positions",
         "mode": "click_VB"
@@ -38,8 +38,8 @@
     {
         "id": "c5a1f3d1-6def-4e66-9d7a-b9197eaa242f",
         "name": "1",
-        "x": "765",
-        "y": "571",
+        "x": 2089,
+        "y": 1439,
         "label": "Position 1",
         "img": "",
         "mode": "click_VB"
@@ -47,8 +47,8 @@
     {
         "id": "ac95e7d0-e9e7-4bf7-b8fa-085a59382be3",
         "name": "2",
-        "x": "882",
-        "y": "571",
+        "x": 2445,
+        "y": 1453,
         "label": "Position 2",
         "img": "",
         "mode": "click_VB"
@@ -56,8 +56,8 @@
     {
         "id": "cd8fe4dc-6514-49cb-9b43-0a643e6861b6",
         "name": "3",
-        "x": "1000",
-        "y": "571",
+        "x": 2805,
+        "y": 1451,
         "label": "Position 3",
         "img": "",
         "mode": "click_VB"
@@ -65,8 +65,8 @@
     {
         "id": "015c73f5-003c-422d-9186-56d2c265dbc9",
         "name": "4",
-        "x": "640",
-        "y": "640",
+        "x": 1756,
+        "y": 1619,
         "label": "Position 4",
         "img": "",
         "mode": "click_VB"
@@ -74,8 +74,8 @@
     {
         "id": "aed8a222-f792-431e-a597-26201fbf4eac",
         "name": "8",
-        "x": "640",
-        "y": "715",
+        "x": 2110,
+        "y": 1619,
         "label": "Position 8",
         "img": "",
         "mode": "click_VB"
@@ -83,8 +83,8 @@
     {
         "id": "52dce056-bab4-4bb8-a562-aeaf9730d8ee",
         "name": "click_reactions",
-        "x": "1039",
-        "y": "870",
+        "x": 2933,
+        "y": 2305,
         "label": "Reactions",
         "img": "reactions",
         "mode": ""
@@ -92,8 +92,8 @@
     {
         "id": "0bb9114c-38b1-400d-aa98-60a4595a28b4",
         "name": "click_thumbsup",
-        "x": "1058",
-        "y": "815",
+        "x": 2713,
+        "y": 2096,
         "label": "Thumbsup",
         "img": "clapping-thumbsup",
         "mode": ""
@@ -101,8 +101,8 @@
     {
         "id": "70ec8a9c-7865-4236-91eb-cf614ff83ffb",
         "name": "click_clapping",
-        "x": "1020",
-        "y": "817",
+        "x": 2606,
+        "y": 2073,
         "label": "Clapping",
         "img": "",
         "mode": ""
